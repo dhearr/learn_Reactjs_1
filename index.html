@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+
+      function Judul({ name }) {
+        return <h1>halo selamat datang {name ? name : "gaes"}</h1>;
+      }
+
+      function Home() {
+        const students = ["dhea", "afani", "hendarin"];
+        const [likes, setLikes] = React.useState(0);
+
+        function handleClickPlus() {
+          setLikes(likes + 1);
+        }
+
+        function handleClickMin() {
+          setLikes(likes - 1);
+        }
+
+        function resetClick() {
+          setLikes(0);
+        }
+
+        return (
+          <>
+            <Judul />
+            <ul>
+              {students.map((student) => (
+                <li key={student}>{student}</li>
+              ))}
+            </ul>
+            <button onClick={handleClickPlus}>+</button>
+            <div>{likes}</div>
+            <button onClick={handleClickMin}>-</button>
+            <button onClick={resetClick}>reset</button>
+          </>
+        );
+      }
+      root.render(<Home />);
+    </script>
+  </body>
+</html>
